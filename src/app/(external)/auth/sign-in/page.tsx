@@ -1,5 +1,5 @@
 "use client"
-import SignInForm from '@/components/ui/SignInForm'
+import SignInForm from '@/components/SignInForm'
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebookF } from "react-icons/fa6"
 import { FaApple } from "react-icons/fa"

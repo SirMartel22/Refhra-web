@@ -2,10 +2,10 @@
 import React from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import type { FieldPath, Control } from "react-hook-form"
-import { Form, FormField, FormItem, FormControl, FormDescription, FormMessage, FormLabel } from '@/component/ui/form'
+import type{FieldPath, Control } from "react-hook-form"
+import { Form, FormField, FormItem, FormControl, FormDescription, FormMessage, FormLabel } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
-import { zodResolver } from '@/hookform/resolvers/zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const formSchema = z.object({
     firstName: z.string().min(3).max(30),
@@ -27,7 +27,7 @@ const SignUpForm = () => {
           email: "",
           username: "",
           password: "",
-          confirmPassword: "",
+          confirmPassword:""
       },
     })
 
@@ -98,7 +98,7 @@ const SignUpForm = () => {
 }
 
 
-interface SignUpFormFieldProps {
+interface SignupFormFieldProps {
     name: FieldPath<z.infer<typeof formSchema>>;
     label: string;
     placeholder: string;
@@ -107,7 +107,7 @@ interface SignUpFormFieldProps {
     formControl: Control <z.infer<typeof formSchema>, undefined>
 }
 
-const SignupFormField: React.FC<SignUpFormFieldProps> = ({
+const SignupFormField: React.FC<SignupFormFieldProps> = ({
     name, label, placeholder, description, inputType, formControl
 }) => {
     return (

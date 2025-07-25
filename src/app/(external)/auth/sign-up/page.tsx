@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import SignupForm from '@/components/ui/SignupForm'
+import SignupForm from '@/components/SignUpForm'
 import { FcGoogle } from 'react-icons/fc'
 import { FaFacebookF } from "react-icons/fa6"
 import { FaApple } from "react-icons/fa"

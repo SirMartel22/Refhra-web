@@ -1,10 +1,10 @@
 "use client"
 
-import react from 'react'
+import React from 'react'
 import { z } from "zod"
-import { useForm } from "react-router-dom"
+import { useForm } from "react-hook-form"
 import type { FieldPath, Control } from "react-hook-form"
-import { Form, FormField, FormItem, FormControl, FormDescription, FormMessage, FormLabel } from "@components/ui/form"
+import { Form, FormField, FormItem, FormControl, FormDescription, FormMessage, FormLabel } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 
@@ -41,7 +41,7 @@ const SignInForm = () => {
                 label="Email"
                 placeholder="Email"
                 inputType="Email"
-                formcontrol={form.control}
+                formControl={form.control}
                 description=""
             />
 
@@ -53,7 +53,7 @@ const SignInForm = () => {
                 formControl={form.control}
             />
 
-            <signinFormField
+            <SigninFormField
                 name="password"
                 label="Password"
                 placeholder="Password"
