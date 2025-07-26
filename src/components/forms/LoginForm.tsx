@@ -5,15 +5,14 @@ import { Eye, EyeOffIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import google from "@/components/icons/google.svg";
 import Image from "next/image";
+import Link from "next/link";
 
-const SignupForm = () => {
-
+const LoginForm = () => {
   const [show, setShow] = useState<boolean>(false);
-
 
   return (
     <div className="flex gap-6 flex-col">
-      <div className="flex space-y-4 flex-col">
+      <div className="flex gap-4 flex-col">
         {/* email adress input */}
         <div className="flex flex-col gap-2 font-normal text-sm">
           <label htmlFor="email" className="text-sm">
@@ -26,20 +25,8 @@ const SignupForm = () => {
           />
         </div>
 
-        {/* username input */}
-
+        {/* password input */}
         <div className="flex flex-col gap-2 font-normal text-sm">
-          <label htmlFor="username" className="text-sm">
-            Username
-          </label>
-          <Input
-            placeholder="e.g Oluwarotimi_"
-            name="username"
-            className="rounded-sm placeholder:text-sm placeholder:text-[#667085] shadow-none  "
-          />
-        </div>
-
-       <div className="flex flex-col gap-2 font-normal text-sm">
           <label htmlFor="password" className="text-sm">
             Password
           </label>
@@ -61,7 +48,32 @@ const SignupForm = () => {
           </div>
         </div>
 
-        <Button className="mt-4">Create Account</Button>
+        <div className="flex items-center h-full justify-between flex-row">
+          <div className="flex-row items-center gap-1 flex">
+            <span className="">
+              <Input
+                name="remember"
+                className="remember text-sm"
+                type="checkbox"
+              />
+            </span>
+            <span>
+              <label
+                htmlFor=".remember"
+                className="font-normal leading-[100%] text-sm"
+              >
+                Remember me
+              </label>
+            </span>
+          </div>
+
+          <Link className="text-sm font-normal" href="/auth/forgot-password">
+            {" "}
+            Forgot Password{" "}
+          </Link>
+        </div>
+
+        <Button className="mt-4">Login</Button>
       </div>
 
       {/* third party sign in */}
@@ -94,8 +106,18 @@ const SignupForm = () => {
           <span>Sign in with Google</span>
         </Button>
       </div>
+
+      <div className="flex w-full text-sm p-2 font-normal items-center justify-center">
+        <span> Don&apos;t have an account? </span>
+        <span className="text-blue-400 px-2 ">
+          <Link className="text-sm font-normal" href="/auth/sign-up">
+            {" "}
+            Sign up{" "}
+          </Link>
+        </span>
+      </div>
     </div>
   );
 };
 
-export default SignupForm;
+export default LoginForm;
