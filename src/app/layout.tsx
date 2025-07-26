@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HarmoniQ",
+  title: "Refhra Web",
   description: "A balance and profuctivity platform",
 };
 
