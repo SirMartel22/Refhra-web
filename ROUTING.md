@@ -5,9 +5,6 @@
 - legal
   - privacy-policy
   - terms-and-condition
-- career
-  - :id (individual jobs page)
-- trial (squeeze page)
 - blog
   - latest (latest articles page)
   - :id (Individual blog page)
@@ -17,7 +14,6 @@
 - auth
   - register
     - ?otp
-    - organisation
   - login
     - email-link
       - success
@@ -26,9 +22,9 @@
     - success
   - reset-password
 - dashboard
-  - products
-    - add
-    - :id
+ 
+ # input the proper routes here
+
   - settings
     - profile
     - account-security
@@ -42,11 +38,6 @@
     - language-and-region
 - admin
   - dashboard
-  - products
-    - add
-    - :id
   - users
   - email-templates
-  - squeeze
-  - waitlist
   - settings
