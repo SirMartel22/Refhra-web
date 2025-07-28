@@ -7,9 +7,7 @@ import google from "@/components/icons/google.svg";
 import Image from "next/image";
 
 const SignupForm = () => {
-
   const [show, setShow] = useState<boolean>(false);
-
 
   return (
     <div className="flex gap-6 flex-col">
@@ -38,8 +36,8 @@ const SignupForm = () => {
             className="rounded-sm placeholder:text-sm placeholder:text-[#667085] shadow-none  "
           />
         </div>
-
-       <div className="flex flex-col gap-2 font-normal text-sm">
+        {/* ----------password form ------- */}
+        <div className="flex flex-col gap-2 font-normal text-sm">
           <label htmlFor="password" className="text-sm">
             Password
           </label>
@@ -51,7 +49,7 @@ const SignupForm = () => {
               className="rounded-sm placeholder:text-sm placeholder:text-[#667085] outline-none focus:outline-none focus:border-none border-none focus:ring-0   focus-visible:ring-[0px] shadow-none  "
             />
 
-            <Button className="" onClick={()=>setShow(!show) } variant="ghost">
+            <Button className="hover:bg-transparent "   onClick={() => setShow(!show)} variant="ghost">
               {show ? (
                 <Eye className="font-extralight text-[#667085] " />
               ) : (
