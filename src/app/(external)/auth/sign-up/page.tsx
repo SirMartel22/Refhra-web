@@ -25,7 +25,7 @@ const SignUp = () => {
           </div>
         </section>
       </div>
-      ;
+      
     </>
   );
 };
