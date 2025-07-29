@@ -76,7 +76,7 @@ export default function Dashboard() {
 
   return (
 
-    <div className="mx-12 my-12 flex flex-col ">
+    <div className="mx-8 flex flex-col ">
         <div className="py-6">
           <h1 className="font-bold text-4xl">Welcome Back, Sarah</h1>
         </div>
@@ -89,7 +89,7 @@ export default function Dashboard() {
           
           <div key={i} id={item.id.toString()} className="flex items-center gap-4 py-2"> 
             <div className="icon bg-[#EAEFEF] p-2 border border-none rounded-md">
-              <BookOpen />
+              <BookOpen strokeWidth="1px"/>
             </div>
             <div>
               <h4>{item.title}</h4>
@@ -110,7 +110,7 @@ export default function Dashboard() {
           {upComingDeadlines.map((item, i) => (
             <div key={i} id={item.id.toString()} className="flex items-center gap-4 py-2"> 
               <div className="bg-[#EAEFEF] p-2 border border-none rounded-md"> 
-                <FileSpreadsheet />
+                <FileSpreadsheet strokeWidth="1px"/>
               </div>
 
               <div> 
@@ -129,11 +129,11 @@ export default function Dashboard() {
         <div className="progress-title">
             <h3 className="font-bold py-2"> Study Progress </h3>
         </div>
-        <div className="course-title space-y-8">
+        <div className="course-title space-y-4">
           {todaysFocus.map((item, i) => (
             <div key={i} id={item.id.toString()} className="space-y-2">
               <h2>{item.title}</h2>
-              <Progress value={item.percentage} color="blue" />
+              <Progress value={item.percentage} className="bg-gray-200 [&>div]:bg-blue-500 [&>div]:rounded-lg" />
               <p>{item.percentage}%</p>
             </div>
             ))}
@@ -144,16 +144,16 @@ export default function Dashboard() {
 
       <div className="mental-health-checking flex flex-col space-y-6 py-8">
         <div className="flex flex-col py-4">
-            <h4 className="font-bold">Mental Health Check-in </h4>
-          <div className="flex justify-between">
+            <h4 className="font-bold py-1">Mental Health Check-in </h4>
+          <div className="flex justify-between space-y-2 flex-col md:flex-row lg:flex-row md:space-y-0 lg:space-y-0">
             <div className="flex space-x-4"> 
               <div className="icon bg-[#EAEFEF] p-2 border border-none rounded-md">
-                <Heart />
+                <Heart strokeWidth="1px"/>
               </div>
               <p> Check-in for toda...</p>
             </div>
             <div>  
-              <Button> Start </Button>
+              <Button className="bg-gray-200 text-black"> Start </Button>
             </div>
 
           </div>
