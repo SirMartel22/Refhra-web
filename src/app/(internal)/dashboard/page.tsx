@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button'
 import { BookOpen } from 'lucide-react'
-import { FileSpreadsheet } from 'lucide-react'
+import { FileSpreadsheet, Heart } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
   // <BookOpen />
 
@@ -21,7 +21,7 @@ export default function Dashboard() {
     id: number;
     title: string;
     time: string;
-    percentage: string;
+    percentage: number;
   }
 
   //define the array type to hold all the objects
@@ -32,22 +32,22 @@ export default function Dashboard() {
       id: 1,
       title: "Calculus II",
       time: `${setTime(9)} - ${setTime(10)}`,
-      percentage: `${((100 / 4) * 3)}%`,
+      percentage: (100 / 4) * 3,
     },
 
     {
       id: 2,
-      title: "Calculus II",
+      title: "Linear Algebra",
       time: `${setTime(10)} - ${setTime(11)}`,
-      percentage: `${((100 / 4) * 2)}%`,
+      percentage: (100 / 4) * 2,
 
     },
 
     {
       id: 3,
-      title: "Calculus II",
+      title: "Probability and Statistics",
       time: `${setTime(11)} - ${setTime(12)}`,
-      percentage: `${(100 / 4)}%`,
+      percentage: 100 / 4,
 
     }
   ]
@@ -76,23 +76,24 @@ export default function Dashboard() {
 
   return (
 
-    <div>
-        <div>
-          <h1>Welcome Back, Sarah</h1>
+    <div className="mx-12 my-12 flex flex-col ">
+        <div className="py-6">
+          <h1 className="font-bold text-4xl">Welcome Back, Sarah</h1>
         </div>
 
       {/* The days Focus section */}
 
-      <div className="todays-focus">
-        <h3>{"Today's Focus"}</h3>
+      <div className="todays-focus flex flex-col justify-center py-4">
+        <h3 className="font-bold">{"Today's Focus"}</h3>
         {todaysFocus.map((item, i) => (
           
-          <div key={i} id={item.id.toString()}> 
-            <BookOpen />
+          <div key={i} id={item.id.toString()} className="flex items-center gap-4 py-2"> 
+            <div className="icon bg-[#EAEFEF] p-2 border border-none rounded-md">
+              <BookOpen />
+            </div>
             <div>
               <h4>{item.title}</h4>
               <p>{item.time}</p>
-              <p>{ item.id }</p>
             </div>
           </div>
 
@@ -101,14 +102,16 @@ export default function Dashboard() {
       </div>
 
       {/* Upcoming Deadlines Section */}
-      <div className="upcoming-dealines">
+      <div className="upcoming-dealines flex flex-col justify-center py-4x">
         <div>
-          <h3>Upcoming Deadlines</h3>
+          <h3 className="font-bold">Upcoming Deadlines</h3>
         </div>
-        <div>
+        <div className="">
           {upComingDeadlines.map((item, i) => (
-            <div key={i} id={item.id.toString()}> 
-              <FileSpreadsheet />
+            <div key={i} id={item.id.toString()} className="flex items-center gap-4 py-2"> 
+              <div className="bg-[#EAEFEF] p-2 border border-none rounded-md"> 
+                <FileSpreadsheet />
+              </div>
 
               <div> 
                 <h4>{item.title}</h4>
@@ -122,16 +125,16 @@ export default function Dashboard() {
 
       {/* Study Progress Section */}
 
-      <div className="study-progress">
+      <div className="study-progress flex flex-col justify-center py-6">
         <div className="progress-title">
-            <h3> Study Progress </h3>
+            <h3 className="font-bold py-2"> Study Progress </h3>
         </div>
-        <div className="course-title">
+        <div className="course-title space-y-8">
           {todaysFocus.map((item, i) => (
-            <div key={i} id={item.id.toString()}>
+            <div key={i} id={item.id.toString()} className="space-y-2">
               <h2>{item.title}</h2>
-              <Progress value={`${item.percentage} %`}/>
-              <p>{item.percentage}</p>
+              <Progress value={item.percentage} color="blue" />
+              <p>{item.percentage}%</p>
             </div>
             ))}
         </div>
@@ -139,15 +142,26 @@ export default function Dashboard() {
 
       {/* Mental Health checking and Motivational Message */}
 
-      <div className="mental-health-checking">
-        <div>
-          <div>
-            <h4>Mental Health Check-in </h4>
+      <div className="mental-health-checking flex flex-col space-y-6 py-8">
+        <div className="flex flex-col py-4">
+            <h4 className="font-bold">Mental Health Check-in </h4>
+          <div className="flex justify-between">
+            <div className="flex space-x-4"> 
+              <div className="icon bg-[#EAEFEF] p-2 border border-none rounded-md">
+                <Heart />
+              </div>
+              <p> Check-in for toda...</p>
             </div>
-            <div> 
-            <div> </div>
-            <Button> Start </Button>
+            <div>  
+              <Button> Start </Button>
             </div>
+
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <h4 className="font-bold">Motivational Message</h4>
+            <p>Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.</p>
         </div>
       </div>
     </div >
