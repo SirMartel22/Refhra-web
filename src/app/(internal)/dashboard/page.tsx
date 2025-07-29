@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { BookOpen } from 'lucide-react'
@@ -21,7 +21,7 @@ export default function Dashboard() {
     id: number;
     title: string;
     time: string;
-    percentage: string
+    percentage: string;
   }
 
   //define the array type to hold all the objects
@@ -32,14 +32,14 @@ export default function Dashboard() {
       id: 1,
       title: "Calculus II",
       time: `${setTime(9)} - ${setTime(10)}`,
-      percentage: `${((100 / 4) * 3)} %`,
+      percentage: `${((100 / 4) * 3)}%`,
     },
 
     {
       id: 2,
       title: "Calculus II",
       time: `${setTime(10)} - ${setTime(11)}`,
-      percentage:`${((100/4) * 2)} %`,
+      percentage: `${((100 / 4) * 2)}%`,
 
     },
 
@@ -47,7 +47,7 @@ export default function Dashboard() {
       id: 3,
       title: "Calculus II",
       time: `${setTime(11)} - ${setTime(12)}`,
-      percentage:`${((100/4) * 1)} %`,
+      percentage: `${(100 / 4)}%`,
 
     }
   ]
@@ -86,11 +86,13 @@ export default function Dashboard() {
       <div className="todays-focus">
         <h3>{"Today's Focus"}</h3>
         {todaysFocus.map((item, i) => (
-          <div key={i} id={item.id}> 
+          
+          <div key={i} id={item.id.toString()}> 
             <BookOpen />
             <div>
               <h4>{item.title}</h4>
               <p>{item.time}</p>
+              <p>{ item.id }</p>
             </div>
           </div>
 
@@ -105,7 +107,7 @@ export default function Dashboard() {
         </div>
         <div>
           {upComingDeadlines.map((item, i) => (
-            <div key={i} id={item.id}> 
+            <div key={i} id={item.id.toString()}> 
               <FileSpreadsheet />
 
               <div> 
@@ -126,12 +128,26 @@ export default function Dashboard() {
         </div>
         <div className="course-title">
           {todaysFocus.map((item, i) => (
-            <div key={i} id={item.id}>
+            <div key={i} id={item.id.toString()}>
               <h2>{item.title}</h2>
-              <Progress value={item.percentage} />
+              <Progress value={`${item.percentage} %`}/>
               <p>{item.percentage}</p>
             </div>
             ))}
+        </div>
+      </div>
+
+      {/* Mental Health checking and Motivational Message */}
+
+      <div className="mental-health-checking">
+        <div>
+          <div>
+            <h4>Mental Health Check-in </h4>
+            </div>
+            <div> 
+            <div> </div>
+            <Button> Start </Button>
+            </div>
         </div>
       </div>
     </div >
