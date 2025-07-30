@@ -32,13 +32,13 @@ const LoginForm = () => {
           </label>
           <div className="flex border border-border rounded-sm pr-3 w-full items-center flex-row">
             <Input
-              type="password"
+              type={show ? "text" : "password"}
               placeholder="Enter Password"
               name="password"
               className="rounded-sm placeholder:text-sm placeholder:text-[#667085] outline-none focus:outline-none focus:border-none border-none focus:ring-0   focus-visible:ring-[0px] shadow-none  "
             />
 
-            <Button className="" onClick={()=>setShow(!show) } variant="ghost">
+            <Button className="" onClick={() => setShow(!show)} variant="ghost">
               {show ? (
                 <Eye className="font-extralight text-[#667085] " />
               ) : (

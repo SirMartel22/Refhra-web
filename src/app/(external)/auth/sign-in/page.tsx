@@ -32,6 +32,3 @@ const Login = () => {
 
 export default Login;
 
-<div className="flex h-screen w-screen flex-row">
-  <div className="lg:flex w-[47%] hidden  bg-gray-300 "></div>
-</div>;
