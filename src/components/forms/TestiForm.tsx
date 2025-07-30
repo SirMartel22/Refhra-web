@@ -1,157 +1,120 @@
 "use client";
+
 import React, { useState } from "react";
-import { Input } from "../ui/input";
-import { Eye, EyeOffIcon } from "lucide-react";
-import { Button } from "../ui/button";
-import google from "@/components/icons/google.svg";
-import Image from "next/image";
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-const userFormSchema = z.object({
-  firstName: z.string(),
-  email: z.string().email(),
-  profile_url: z.string().url(),
-  age: z.number().min(1).nullable(),
-  friends: z.array(z.string()).max(2),
-  settings: z.object({
-    isSuscribed: z.boolean(),
-  }),
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Eye, EyeOffIcon } from "lucide-react";
+import Image from "next/image";
+import google from "@/components/icons/google.svg";
+
+// 1. ✅ Zod schema
+const loginFormSchema = z.object({
+  email: z.string().email("Invalid email"),
+  userName: z.string().min(1, "Username is required"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-type userForm = z.infer<typeof userFormSchema>;
-
-type loginForm = {
-  email: string,
-  userName: string,
-  password: string
-}
+type LoginFormData = z.infer<typeof loginFormSchema>;
 
 const TestForm = () => {
-  const [show, setShow] = useState<boolean>(false);
-  const [authForm, setAuthForm] = useState<loginForm>({
-    email: "",
-    userName: "",
-    password: ""
-  })
+  const [showPassword, setShowPassword] = useState(false);
 
-
-  console.log(authForm)
-
-  const onChangePassword = (event: { preventDefault: () => void; }) => {
-    event.preventDefault()
-    console.log()
-
-    setAuthForm({...authForm})
-  }
-
-  const form = useForm<userForm>({
-    resolver: zodResolver(userFormSchema),
+  // 2. ✅ React Hook Form config
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginFormSchema),
   });
 
-  const handleSubmit = (data: userForm) => {
-    const result = userFormSchema.safeParse(data);
-
-    if (result.success) {
-      // handle success
-    } else {
-      // handle error
-    }
+  // 3. ✅ Submission handler
+  const onSubmit = (data: LoginFormData) => {
+    console.log("✅ Valid Form Submission:", data);
+    // You can now send `data` to your backend or auth logic
   };
 
   return (
-    <div className="flex gap-6 flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex gap-6 flex-col">
       <div className="flex space-y-4 flex-col">
-        {/* email adress input */}
+        {/* Email */}
         <div className="flex flex-col gap-2 font-normal text-sm">
           <label htmlFor="email" className="text-sm">
             Email Address
           </label>
           <Input
-            name="email"
-            value={authForm.email}
-            onChange={onChangePassword}
+            id="email"
             placeholder="Enter your email address"
-            className="rounded-sm placeholder:text-sm placeholder:text-[#667085] shadow-none  "
+            {...register("email")}
           />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
 
-        {/* username input */}
-
+        {/* Username */}
         <div className="flex flex-col gap-2 font-normal text-sm">
-          <label htmlFor="username" className="text-sm">
+          <label htmlFor="userName" className="text-sm">
             Username
           </label>
           <Input
+            id="userName"
             placeholder="e.g Oluwarotimi_"
-            name="username"
-            className="rounded-sm placeholder:text-sm placeholder:text-[#667085] shadow-none  "
+            {...register("userName")}
           />
+          {errors.userName && <p className="text-red-500 text-sm">{errors.userName.message}</p>}
         </div>
-        {/* ----------password form ------- */}
+
+        {/* Password */}
         <div className="flex flex-col gap-2 font-normal text-sm">
           <label htmlFor="password" className="text-sm">
             Password
           </label>
           <div className="flex border border-border rounded-sm pr-3 w-full items-center flex-row">
             <Input
-              type="password"
+              id="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
-              name="password"
-              className="rounded-sm placeholder:text-sm placeholder:text-[#667085] outline-none focus:outline-none focus:border-none border-none focus:ring-0   focus-visible:ring-[0px] shadow-none  "
+              {...register("password")}
+              className="flex-1 border-none focus:ring-0 shadow-none"
             />
 
             <Button
-              className="hover:bg-transparent "
-              onClick={() => setShow(!show)}
+              type="button"
+              className="hover:bg-transparent"
+              onClick={() => setShowPassword(!showPassword)}
               variant="ghost"
             >
-              {show ? (
-                <Eye className="font-extralight text-[#667085] " />
+              {showPassword ? (
+                <Eye className="text-[#667085]" />
               ) : (
-                <EyeOffIcon className="font-extralight text-[#667085] " />
+                <EyeOffIcon className="text-[#667085]" />
               )}
             </Button>
           </div>
+          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
         </div>
 
-        <Button onClick={() => handleSubmit()} className="mt-4">
+        <Button type="submit" className="mt-4">
           Create Account
         </Button>
       </div>
 
-      {/* third party sign in */}
-      <div className="flex space-y-[10px] flex-col ">
-        <Button className=" rounded-[8px] bg-transparent border flex flex-row shadow-none text-black   ">
-          <span>
-            {" "}
-            <Image
-              src={google}
-              height={24}
-              width={24}
-              alt="google icon"
-              className="h-6 w-6"
-            />{" "}
-          </span>
+      {/* Sign in with Google (static) */}
+      <div className="flex space-y-[10px] flex-col">
+        <Button className="rounded-[8px] bg-transparent border flex items-center gap-2 text-black shadow-none">
+          <Image src={google} height={24} width={24} alt="google icon" />
           <span>Sign in with Google</span>
         </Button>
 
-        <Button className=" rounded-[8px] bg-transparent border flex flex-row shadow-none text-black   ">
-          <span>
-            {" "}
-            <Image
-              src={google}
-              height={24}
-              width={24}
-              alt="google icon"
-              className="h-6 w-6"
-            />{" "}
-          </span>
+        <Button className="rounded-[8px] bg-transparent border flex items-center gap-2 text-black shadow-none">
+          <Image src={google} height={24} width={24} alt="google icon" />
           <span>Sign in with Google</span>
         </Button>
       </div>
-    </div>
+    </form>
   );
 };
 
