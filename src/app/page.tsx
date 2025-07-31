@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import Navbar from "@/components/Navbar";
 
+=======
+"use client"
+>>>>>>> Feat/Dashboard
 export default function HomePage() {
   return (
 
