@@ -6,77 +6,135 @@ import { Button } from "../ui/button";
 import google from "@/components/icons/google.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { LoginSchema } from "@/schemas/auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  // FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 const LoginForm = () => {
   const [show, setShow] = useState<boolean>(false);
 
+  type LoginData = z.infer<typeof LoginSchema>;
+
+  const form = useForm<LoginData>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
+  });
+
+  const handleSubmit = (values: LoginData) => {
+    console.log(values);
+  };
+
   return (
     <div className="flex gap-6 flex-col">
-      <div className="flex gap-4 flex-col">
-        {/* email adress input */}
-        <div className="flex flex-col gap-2 font-normal text-sm">
-          <label htmlFor="email" className="text-sm">
-            Email Address
-          </label>
-          <Input
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className="flex gap-4 flex-col"
+        >
+          <FormField
+            control={form.control}
             name="email"
-            placeholder="Enter your email address"
-            className="rounded-sm placeholder:text-sm placeholder:text-[#667085] shadow-none  "
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email Address</FormLabel>
+                <FormControl>
+                  <Input
+                    className="rounded-sm placeholder:text-sm placeholder:text-[#667085] shadow-none  "
+                    placeholder="shadcn"
+                    {...field}
+                  />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
 
-        {/* password input */}
-        <div className="flex flex-col gap-2 font-normal text-sm">
-          <label htmlFor="password" className="text-sm">
-            Password
-          </label>
-          <div className="flex border border-border rounded-sm pr-3 w-full items-center flex-row">
-            <Input
-              type={show ? "text" : "password"}
-              placeholder="Enter Password"
-              name="password"
-              className="rounded-sm placeholder:text-sm placeholder:text-[#667085] outline-none focus:outline-none focus:border-none border-none focus:ring-0   focus-visible:ring-[0px] shadow-none  "
-            />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <div className="flex border border-border rounded-sm pr-3 w-full items-center flex-row">
+                    <Input
+                      {...field}
+                      type={show ? "text" : "password"}
+                      placeholder="Enter Password"
+                      name="password"
+                      className="rounded-sm placeholder:text-sm placeholder:text-[#667085] outline-none focus:outline-none focus:border-none border-none focus:ring-0   focus-visible:ring-[0px] shadow-none  "
+                    />
 
-            <Button className="" onClick={() => setShow(!show)} variant="ghost">
-              {show ? (
-                <Eye className="font-extralight text-[#667085] " />
-              ) : (
-                <EyeOffIcon className="font-extralight text-[#667085] " />
-              )}
-            </Button>
-          </div>
-        </div>
+                    <p className="" onClick={() => setShow(!show)}>
+                      {show ? (
+                        <Eye className="font-extralight h-4 w-4 text-[#667085] " />
+                      ) : (
+                        <EyeOffIcon className="font-extralight h-4 w-4 text-[#667085] " />
+                      )}
+                    </p>
+                  </div>
+                </FormControl>
 
-        <div className="flex items-center h-full justify-between flex-row">
-          <div className="flex-row items-center gap-1 flex">
-            <span className="">
-              <Input
-                name="remember"
-                className="remember text-sm"
-                type="checkbox"
-              />
-            </span>
-            <span>
-              <label
-                htmlFor=".remember"
-                className="font-normal leading-[100%] text-sm"
-              >
-                Remember me
-              </label>
-            </span>
-          </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-          <Link className="text-sm font-normal" href="/auth/forgot-password">
-            {" "}
-            Forgot Password{" "}
-          </Link>
-        </div>
+          <FormField
+            control={form.control}
+            name="rememberMe"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center h-full justify-between flex-row">
+                  <div className="flex-row items-center gap-1 flex">
+                    <span className="">
+                      <FormControl>
+                        <Input
+                          name="rememberMe"
+                          className="remember text-sm"
+                          type="checkbox"
+                          checked={field.value}
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                    </span>
+                    <span>
+                      <FormLabel className="font-normal leading-[100%] text-sm">
+                        Remember me
+                      </FormLabel>
+                    </span>
+                  </div>
 
-        <Button className="mt-4">Login</Button>
-      </div>
+                  <Link
+                    className="text-sm font-normal"
+                    href="/auth/forgot-password"
+                  >
+                    {" "}
+                    Forgot Password{" "}
+                  </Link>
+                </div>
+              </FormItem>
+            )}
+          />
+          <Button className="mt-4">Login</Button>
+        </form>
+      </Form>
 
-      {/* third party sign in */}
       <div className="flex space-y-[10px] flex-col ">
         <Button className=" rounded-[8px] bg-transparent border flex flex-row shadow-none text-black   ">
           <span>
@@ -105,16 +163,6 @@ const LoginForm = () => {
           </span>
           <span>Sign in with Google</span>
         </Button>
-      </div>
-
-      <div className="flex w-full text-sm p-2 font-normal items-center justify-center">
-        <span> Don&apos;t have an account? </span>
-        <span className="text-blue-400 px-2 ">
-          <Link className="text-sm font-normal" href="/auth/sign-up">
-            {" "}
-            Sign up{" "}
-          </Link>
-        </span>
       </div>
     </div>
   );
