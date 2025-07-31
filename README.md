@@ -14,7 +14,7 @@ In order to run this app locally, you should have the following programs install
 #### Clone this repository
 
 ```
-git clone https://github.com/TeamElite1/Harmoniq-web.git
+git clone https://github.com/TeamElite1/Refhra-web.git
 cd Refhra_web
 ```
 
