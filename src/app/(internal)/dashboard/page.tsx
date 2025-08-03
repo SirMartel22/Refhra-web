@@ -7,7 +7,7 @@ import { FileSpreadsheet, Heart } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
   // <BookOpen />
 
-export default function Dashboard() {
+const Dashboard = () => {
 
   const setTime = (hour: number, minute: number = 0) => {
     const time = new Date();
@@ -25,7 +25,7 @@ export default function Dashboard() {
   }
 
   //define the array type to hold all the objects
-  type TodaysFocusArray = TodaysFocus[]
+  type TodaysFocusArray = TodaysFocus[];
 
   const todaysFocus: TodaysFocusArray = [
     {
@@ -150,7 +150,7 @@ export default function Dashboard() {
               <div className="icon bg-[#EAEFEF] p-2 border border-none rounded-md">
                 <Heart strokeWidth="1px"/>
               </div>
-              <p> Check-in for toda...</p>
+              <p> Check-in for today </p>
             </div>
             <div>  
               <Button className="bg-gray-200 text-black"> Start </Button>
@@ -167,3 +167,5 @@ export default function Dashboard() {
     </div >
   )
 }
+
+export default Dashboard
