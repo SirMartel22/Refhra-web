@@ -3,6 +3,7 @@
 import React from 'react'
 import LineChart from '@/components/charts/Linechart'
 import StudyTime from '@/components/charts/VerticalBarchart'
+import WeeklyProgress from '@/components/charts/WeeklyProgress'
 
 const Productivity = () => {
   return (
@@ -16,6 +17,10 @@ const Productivity = () => {
       <div className="study-chart w-full">
         <h2 className="font-bold text-2xl py-8"> Weekly Productivity </h2>
         <StudyTime />
+      </div>
+
+      <div className="w-full">
+        <WeeklyProgress />
       </div>
 
       <div className="productivity-chart w-full"> 
