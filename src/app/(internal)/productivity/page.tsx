@@ -2,14 +2,14 @@
 'use client'
 import React from 'react'
 import LineChart from '@/components/charts/Linechart'
-import StudyTime from '@/components/charts/HorizontalBarchart'
+import StudyTime from '@/components/charts/VerticalBarchart'
 
 const Productivity = () => {
   return (
-    <div className="flex flex-col justify-center items-center px-6 py-12 gap-12">
+    <div className="flex flex-col w-[90vw] justify-center items-center px-6 py-12 gap-12">
 
       <div className="w-full">
-        <h2 className="font-bold text-3xl"> Productivity Report </h2>
+        <h2 className="font-bold text-3xl mb-4"> Productivity Report </h2>
         <p className="text-2xl-blue"> Analyze your weekly productivity, goal, achievement, and mental health trends. </p>
       </div>
 
