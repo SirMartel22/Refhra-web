@@ -64,7 +64,7 @@ const Linechart= () => {
     
     return (
         
-         <div className="line-chart w-[100%] mx-96 h-96 p-4 border rounded-md py-8 px-6">
+         <div className="line-chart w-full h-96 p-4 border rounded-md py-8 px-6">
                 <h2 className="text-xl font-bold mb-4">Weekly Productivity Chart</h2>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart
