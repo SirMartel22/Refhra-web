@@ -39,10 +39,7 @@
     "react-hook-form": "^7.61.1",
     "react-redux": "^9.2.0",
     "recharts": "^3.1.0",
-<<<<<<< HEAD
-=======
-    "sonner": "^2.0.6",
->>>>>>> 1ba9799f55c682ebdba2c24953bc4b3de809788e
+   
     "tailwind-merge": "^3.2.0",
     "vite-plugin-magical-svg": "^1.8.0",
     "zod": "^3.25.76"
