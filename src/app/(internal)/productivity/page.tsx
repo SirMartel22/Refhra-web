@@ -7,7 +7,7 @@ import WeeklyProgress from '@/components/charts/WeeklyProgress'
 
 const Productivity = () => {
   return (
-    <div className="flex flex-col w-full  mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-6 sm:space-y-8 lg:space-y-12">
+    <div className="flex flex-col w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-6 sm:space-y-8 lg:space-y-12">
 
         <div className="w-full">
             <h2 className="font-bold text-3xl mb-4"> Productivity Report </h2>
