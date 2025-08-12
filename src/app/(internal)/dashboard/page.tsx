@@ -102,7 +102,7 @@ export default function Dashboard() {
       </div>
 
       {/* Upcoming Deadlines Section */}
-      <div className="upcoming-dealines flex flex-col justify-center py-4x">
+      <div className="upcoming-deadlines flex flex-col justify-center py-4x">
         <div>
           <h3 className="font-bold">Upcoming Deadlines</h3>
         </div>
