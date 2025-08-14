@@ -32,21 +32,13 @@
     "clsx": "^2.1.1",
     "decimal.js-light": "^2.5.1",
     "lucide-react": "^0.503.0",
-<<<<<<< HEAD
     "next": "^15.4.6",
-=======
-    "next": "15.3.1",
     "next-themes": "^0.4.6",
->>>>>>> main
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.61.1",
     "react-redux": "^9.2.0",
     "recharts": "^3.1.0",
-<<<<<<< HEAD
-=======
-   
->>>>>>> main
     "tailwind-merge": "^3.2.0",
     "vite-plugin-magical-svg": "^1.8.0",
     "zod": "^3.25.76"
